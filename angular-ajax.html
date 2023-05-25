@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Tutorial Angular, Ajax</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script>
+            
+            var app=angular.module("aplicacionAngular",[]);
+            
+            app.controller("lenguajesControlador",function($scope,$http) {
+               
+               $http.get("datos.php").success(function(response) {
+                   $scope.lenguajes=response;
+               }).error(function(data,status) {
+                   alert("Error "+status);
+               });
+                
+            });
+        </script>    
+    </head>
+    <body>
+        
+        <h2>Ejemplo simple Angular con Ajax</h2>
+        <div ng-app="aplicacionAngular" ng-controller="lenguajesControlador">
+            {{lenguajes.nombre}}
+        <table border='1'>
+                          <tr>
+                              <th>Lenguaje</th>
+                              <th>Nivel</th>
+                          </tr>
+                          <tr ng-repeat="elemento in lenguajes">
+                                <td>{{elemento.lenguaje}}</td><td>{{elemento.nivel}}</td>
+                          </tr>
+         </table>
+            
+        </div>   
+        
+    </body>
+</html>

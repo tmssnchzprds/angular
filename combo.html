@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Angular</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module("aplicacionAngular",[]);
+	app.controller("miControlador",function($scope){
+		$scope.conocimientos=[{lenguaje:'java',nivel:'alto'},{lenguaje:'php',nivel:'medio'},{lenguaje:'jquery',nivel:'alto'},{lenguaje:'sql',nivel:'medio'},{lenguaje:'c',nivel:'alto'}];
+		});
+</script>
+</head>
+
+<body>
+	<div ng-app="aplicacionAngular" ng-controller="miControlador">
+ 	<select ng-model="lenguajes">
+    <option ng-repeat="e in conocimientos" value="{{e.lenguaje}}">{{e.lenguaje}}</option>
+    </select>
+    <h2>Has seleccionado {{lenguajes}}</h2>
+    </div>
+
+</body>
+</html>

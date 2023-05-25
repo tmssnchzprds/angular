@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Angular</title>
+<script src="angular.js"></script>
+</head>
+
+<body>
+<!--<div ng-app="">
+<p>Nombre:<input type="text" ng-model="nombre"></p>
+<p ng-bind="nombre"></p>
+</div>-->
+<!--Expresiones-->
+<div ng-app="" ng-init="cantidad=5;precio=150;nombre='toby';
+persona={ojos:'verde',altura:180}">
+Esto es un ejemplo de expresion {{10+5}}<br>
+Esto es un ejemplo de expresion <span ng_bind="cantidad*precio"></span>
+Resultado es {{cantidad*precio}}<br>
+El perro se llama {{nombre}}<br>
+El color de ojos de la persona es {{persona.ojos}}
+</div>
+</body>
+</html>

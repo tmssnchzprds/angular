@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Angular</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module("aplicacionAngular",[]);
+	app.controller("miControlador",function($scope){
+		$scope.empleado={
+			nombre:'Juan',
+			apellidos:'Ambrosio',
+			conocimientos:[{lenguaje:'java',nivel:'alto'},{lenguaje:'php',nivel:'medio'},{lenguaje:'jquery',nivel:'alto'},{lenguaje:'sql',nivel:'medio'},{lenguaje:'c',nivel:'alto'}]
+			
+			};
+		});
+</script>
+</head>
+
+<body>
+	<div ng-app="aplicacionAngular" ng-controller="miControlador">
+   <table border="1">
+   	<tr><th colspan="2">Datos empleado</th>
+    </tr>
+    <tr><td>Nombre</td><td>{{empleado.nombre}}</td></tr>
+    <tr><td>Apellidos</td><td>{{empleado.apellidos}}</td></tr>
+    <tr><td>Conocimientos</td><td>
+    <table border="1">
+    	<tr><th>lenguaje</th><th>Nivel</th></tr>
+        <tr ng-repeat="elemento in empleado.conocimientos">
+        	<td>{{elemento.lenguaje}}</td><td>{{elemento.nivel}}</td>
+        </tr>
+    </table>
+    </td></tr>
+   </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Angular</title>
+<script src="angular.js"></script>
+<script>
+/*var app=angular.module("aplicacionAngular",[]);
+app.controller("miControlador",function($scope,$http){
+	var url="datos.html";
+	$http.get(url).success(function(datos) {$scope.lenguajes=datos;});
+		});*/
+//para hacer uso de $resource debemos colocarlo al crear el modulo
+var app = angular.module("aplicacionAngular", ["ngResource"]);
+ 
+//con dataResource inyectamos la factoría
+app.controller("miControlador", function ($scope, $http, dataResource) {
+    //hacemos uso de $http para obtener los datos del json
+    $http.get('datos.json').success(function (data) {
+        //Convert data to array.
+        //datos lo tenemos disponible en la vista gracias a $scope
+        $scope.datos = data;
+    });
+    //datosResource lo tenemos disponible en la vista gracias a $scope
+    $scope.datosResource = dataResource.get();
+})
+ 
+//de esta forma tan sencilla consumimos con $resource en AngularJS
+app.factory("dataResource", function ($resource) {
+    return $resource("datos.json", //la url donde queremos consumir
+        {}, //aquí podemos pasar variables que queramos pasar a la consulta
+        //a la función get le decimos el método, y, si es un array lo que devuelve
+        //ponemos isArray en true
+        { get: { method: "GET", isArray: true }
+    })
+})
+</script>
+</head>
+
+<body>
+		<div ng-app="aplicacionAngular" ng-controller="miControlador">
+<table border="1">
+    	<tr><th>lenguaje</th><th>Nivel</th></tr>
+        <tr ng-repeat="data in datosResource">
+        	<td>{{data.lenguaje}}</td><td>{{data.nivel}}</td>
+        </tr>
+    </table>        
+        </div>
+</body>
+</html>

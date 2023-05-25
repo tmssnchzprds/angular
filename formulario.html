@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Angular</title>
+<style type="text/css">
+	input.pg-invalid {
+		background-color:pink;}
+	input.pg-valid {
+		background-color:greenyellow;}
+</style>
+<script src="angular.js"></script>
+<script>
+
+</script>
+</head>
+
+<body>
+	<div ng-app="">
+    Mostrar <input type="checkbox" ng-model="tick">
+ 	<div ng-show="tick">
+    <h2>Welcome Angular
+    </div>
+    <form name="formulario">
+		<input type="text" name="caja" ng-model="caja" required>
+        <input type="text" name="caja2" ng-model="caja2" required>
+        <span ng-show="formulario.caja2.$touched">La caja es requerida</span>
+        <br>
+        <input type="email" name="email" ng-model="email" required>
+        <span style="color:red" ng-show="formulario.email.$invalid && formulario.email.$dirty">Email Requerido o es invalido</span>
+		<button>enviar</button>
+    </form> 
+    <p>El estado valido de la caja es: {{formulario.caja.$valid}}
+    </div>
+<!--<input>
+$untouched // El campo no ha sido tocado
+$touched // El campo ha sido tocado
+$pristine // No ha sido modificado (focus)
+$$dirty // Ha sido modificado
+$invalid // No es valido
+$valid // Es valido
+<form>
+$submitted // Enviado
+$pristine //
+$$dirty
+$invalid
+$valid-->
+
+</body>
+</html>
